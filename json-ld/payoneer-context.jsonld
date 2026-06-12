@@ -1,0 +1,74 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "payoneer": "https://www.payoneer.com/vocabulary/",
+    "aid": "payoneer:aid",
+    "name": "schema:name",
+    "description": "schema:description",
+    "url": "schema:url",
+    "image": "schema:image",
+    "provider": {
+      "@id": "schema:provider",
+      "@type": "schema:Organization"
+    },
+    "Organization": "schema:Organization",
+    "WebAPI": "schema:WebAPI",
+    "PaymentService": "schema:PaymentService",
+    "entryPoint": "schema:entryPoint",
+    "documentation": "schema:documentation",
+    "termsOfService": "schema:termsOfService",
+    "MassPayout": "payoneer:MassPayout",
+    "Payee": "payoneer:Payee",
+    "PayoutRequest": "payoneer:PayoutRequest",
+    "CheckoutSession": "payoneer:CheckoutSession",
+    "CurrencyConversion": "payoneer:CurrencyConversion",
+    "MarketplacePayment": "payoneer:MarketplacePayment",
+    "PSD2Account": "payoneer:PSD2Account",
+    "payeeId": "payoneer:payeeId",
+    "payoutAmount": "payoneer:payoutAmount",
+    "payoutCurrency": "payoneer:payoutCurrency",
+    "payoutStatus": "payoneer:payoutStatus",
+    "merchantId": "payoneer:merchantId",
+    "checkoutId": "payoneer:checkoutId",
+    "sourceCurrency": "payoneer:sourceCurrency",
+    "targetCurrency": "payoneer:targetCurrency",
+    "conversionRate": "payoneer:conversionRate"
+  },
+  "@type": "schema:WebAPI",
+  "name": "Payoneer API",
+  "description": "Payoneer is a global payment platform that enables businesses to pay and get paid across borders in multiple currencies, offering REST APIs for mass payouts, marketplace payment distribution, payment requests, and currency conversion.",
+  "url": "https://www.payoneer.com/developers/",
+  "provider": {
+    "@type": "schema:Organization",
+    "name": "Payoneer",
+    "url": "https://www.payoneer.com",
+    "sameAs": [
+      "https://github.com/payoneer",
+      "https://www.linkedin.com/company/payoneer",
+      "https://x.com/Payoneer_Help",
+      "https://developer.payoneer.com"
+    ]
+  },
+  "documentation": "https://developer.payoneer.com",
+  "termsOfService": "https://www.payoneer.com/legal/",
+  "availableChannel": [
+    {
+      "@type": "schema:ServiceChannel",
+      "name": "Payoneer Mass Payout API",
+      "serviceUrl": "https://api.payoneer.com",
+      "description": "Enables payee registration, account approval, and fund transfers for mass payouts to recipients around the world."
+    },
+    {
+      "@type": "schema:ServiceChannel",
+      "name": "Payoneer Checkout API",
+      "serviceUrl": "https://api.payoneer.com",
+      "description": "REST API for building high-converting checkout experiences, enabling merchants to accept and manage payments from customers worldwide."
+    },
+    {
+      "@type": "schema:ServiceChannel",
+      "name": "Payoneer PSD2 API",
+      "serviceUrl": "https://api.payoneer.com",
+      "description": "PSD2-compliant banking APIs for European financial services integration."
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "provider": "payoneer",
+  "name": "Payoneer",
+  "blogUrl": "https://www.payoneer.com/newsroom/",
+  "rssUrl": null,
+  "rssConfirmed": false,
+  "notes": "No public RSS feed found for the Payoneer newsroom. The newsroom at https://www.payoneer.com/newsroom/ does not expose a feed endpoint at common paths (/feed/, /rss/, /atom/).",
+  "lastChecked": "2026-06-12",
+  "posts": []
+}

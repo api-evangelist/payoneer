@@ -121,6 +121,10 @@ common:
     url: rate-limits/payoneer-rate-limits.yml
   - type: FinOps
     url: finops/payoneer-finops.yml
+  - type: BlogPosts
+    url: blogs/blogs.json
+  - type: JSONLDContext
+    url: json-ld/payoneer-context.jsonld
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
