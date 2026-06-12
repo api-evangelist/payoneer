@@ -1,0 +1,61 @@
+specification: API Commons Plans 0.1
+provider: Payoneer
+providerId: payoneer
+created: 2026-06-12
+modified: 2026-06-12
+reconciled: true
+description: >
+  Payoneer does not publish a self-serve API pricing tier table. API access
+  is granted through an approved integration partnership. Costs are primarily
+  transaction-based (fees per payout or payment) rather than subscription tiers.
+  Contact Payoneer's partnership team for enterprise pricing.
+plans:
+  - name: Integration Partner
+    type: paid
+    description: >
+      API access is provided exclusively to approved integration partners.
+      Developers must apply for a partnership and receive Client ID and Client
+      Secret credentials. Pricing is negotiated per partnership and is
+      primarily transaction-fee-based.
+    entries:
+      - name: API Access
+        type: boolean
+        value: true
+        description: REST API access to Mass Payout, Services, and Checkout APIs
+      - name: OAuth2 Credentials
+        type: boolean
+        value: true
+        description: Client ID and Client Secret for OAuth2 client credentials flow
+      - name: Sandbox Environment
+        type: boolean
+        value: true
+        description: Sandbox environment at api.sandbox.payoneer.com for testing
+      - name: Transaction Fee
+        type: metered
+        description: >
+          Per-payout or per-payment transaction fees; rates depend on volume,
+          currency corridors, and negotiated partnership agreement.
+        unit: per transaction
+        price: negotiated
+      - name: Currency Conversion Fee
+        type: metered
+        description: Fee for cross-currency conversions, varies by currency pair
+        unit: per conversion
+        price: negotiated
+  - name: Enterprise
+    type: enterprise
+    description: >
+      High-volume enterprises and marketplace platforms with custom integration
+      requirements. Includes dedicated support, SLA, and custom pricing.
+    entries:
+      - name: Custom Volume Pricing
+        type: metered
+        description: Volume-based discounts for high transaction counts
+        unit: per transaction
+        price: custom
+      - name: Dedicated Integration Support
+        type: boolean
+        value: true
+      - name: Custom SLA
+        type: boolean
+        value: true

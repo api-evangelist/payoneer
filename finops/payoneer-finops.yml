@@ -1,0 +1,58 @@
+specification: FinOps Framework 1.0
+focus: FOCUS-aligned
+provider: Payoneer
+created: 2026-06-12
+modified: 2026-06-12
+description: >
+  Payoneer's cost model is transaction-based with no fixed subscription fee
+  for API access. Costs accumulate per payout sent, per payment collected,
+  and per currency conversion executed. Volume discounts are available at
+  enterprise tier through partnership agreements.
+billingModel: metered
+billingCycle: monthly
+focusColumns:
+  - ChargeCategory: Usage
+  - ServiceCategory: Payment Processing
+  - ServiceName: Payoneer Mass Payout API
+  - ServiceName: Payoneer Checkout API
+  - ChargeType: Usage
+  - BilledCurrency: USD
+  - PricingCategory: Standard
+meters:
+  - name: Payout Transaction
+    description: Fee charged per outbound payout to a payee
+    unit: per transaction
+    dimension: payout_count
+    notes: Rate depends on volume tier and destination country/currency
+  - name: Payment Collection
+    description: Fee charged per inbound payment collected from a payer
+    unit: per transaction
+    dimension: collection_count
+    notes: Rate varies by payment method and currency corridor
+  - name: Currency Conversion
+    description: FX spread or fee applied when converting between currencies
+    unit: per conversion
+    dimension: conversion_volume_usd
+    notes: Spread varies by currency pair and notional amount
+  - name: Cross-Border Transfer
+    description: Additional fee for international fund transfers outside standard corridors
+    unit: per transfer
+    dimension: transfer_count
+    notes: Applicable for certain country pairs
+principles:
+  Visibility:
+    description: >
+      Transaction-level reporting is available through the Payoneer dashboard
+      and API. Developers can query payment status and retrieve payout reports
+      programmatically to track cost accumulation in real time.
+  Optimization:
+    description: >
+      High-volume partners should negotiate volume-based pricing tiers.
+      Batching payouts where possible reduces per-transaction overhead.
+      Selecting appropriate currency corridors and leveraging Payoneer-to-Payoneer
+      transfers (typically lower cost) can reduce overall FX and transfer fees.
+  Accountability:
+    description: >
+      Each API-initiated transaction carries a unique transaction ID enabling
+      cost attribution per integration, marketplace, or business unit.
+      Marketplace operators can track disbursements per payee or product line.

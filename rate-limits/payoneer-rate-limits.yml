@@ -1,0 +1,44 @@
+specification: API Commons Rate Limits 0.1
+provider: Payoneer
+providerId: payoneer
+created: 2026-06-12
+modified: 2026-06-12
+description: >
+  Payoneer does not publicly document specific numeric rate limits in its
+  developer documentation. The API uses OAuth2 bearer tokens with a 30-day
+  expiration, and clients must refresh tokens proactively before expiry.
+  Standard REST best practices apply: back off on 429 responses and retry
+  with exponential delay.
+headers:
+  retryAfter:
+    name: Retry-After
+    description: Seconds to wait before retrying after a 429 response
+    in: response
+throttling:
+  statusCode: 429
+  description: >
+    HTTP 429 Too Many Requests is returned when a client exceeds the allowed
+    request rate. Clients should implement exponential back-off on 429 errors.
+tokenManagement:
+  expiry: 30 days
+  flow: client_credentials
+  description: >
+    OAuth2 application tokens are granted for 30 days. Clients must
+    request a new token before expiry to maintain uninterrupted access.
+    Endpoint: POST {{authorization_url}}/api/v2/oauth2/token
+limits:
+  - scope: API requests
+    metric: requests
+    limit: not publicly specified
+    timeFrame: rolling window
+    description: >
+      Specific request-per-minute or request-per-hour limits are not
+      publicly documented; contact Payoneer integration support for
+      limit details applicable to your partnership tier.
+  - scope: Token refresh
+    metric: token_requests
+    limit: 1
+    timeFrame: per 30 days (minimum)
+    description: >
+      OAuth2 access tokens are valid for 30 days. Refresh before expiry
+      to avoid service interruption.

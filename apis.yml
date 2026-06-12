@@ -1,0 +1,126 @@
+aid: payoneer
+name: Payoneer
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/payoneer/refs/heads/main/apis.yml
+created: 2026-06-12
+modified: 2026-06-12
+specificationVersion: "0.19"
+description: >
+  Payoneer is a global payment platform that enables businesses to pay and get
+  paid across borders in multiple currencies. It offers REST APIs for mass
+  payouts, marketplace payment distribution, payment requests, and currency
+  conversion. The Mass Payout API supports payee registration, account approval,
+  and fund transfers at scale, while the Checkout API provides ecommerce
+  platforms with tools to accept and manage global payments. Authentication is
+  handled via OAuth2 bearer tokens using the client credentials flow, with
+  credentials issued after an integration partnership is approved. Payoneer
+  also provides a PSD2-compliant developer portal for European banking
+  integrations, and maintains a Postman workspace with published API collections.
+tags:
+  - payments
+  - payouts
+  - cross-border payments
+  - currency conversion
+  - marketplace payments
+  - fintech
+  - financial services
+  - mass payouts
+  - checkout
+  - REST
+apis:
+  - name: Payoneer Mass Payout API
+    description: >
+      Enables payee registration, account approval, and fund transfers for
+      mass payouts to recipients around the world.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.payoneer.com/developers/
+    baseURL: https://api.payoneer.com
+    tags:
+      - payouts
+      - mass payments
+      - payee management
+    properties:
+      - type: Documentation
+        url: https://developer.payoneer.com/docs/mass-payouts-v4-getting-started.html
+      - type: PostmanCollection
+        url: https://www.postman.com/payoneerdocs/payoneer-mass-payout-api/documentation/hr4ub7m/payoneer-mass-payout-api
+  - name: Payoneer Mass Payout & Services API
+    description: >
+      Extended mass payout API including additional payment services such as
+      multicurrency accounts, billing, invoice services, and tax compliance
+      integrations.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://www.payoneer.com/developers/
+    baseURL: https://api.payoneer.com
+    tags:
+      - payouts
+      - payment services
+      - currency
+      - tax compliance
+    properties:
+      - type: Documentation
+        url: https://www.payoneer.com/developers/
+      - type: PostmanCollection
+        url: https://www.postman.com/payoneerdocs/payoneer-mass-payout-services-apis/collection/37opocf/payoneer-mass-payout-services-api
+  - name: Payoneer Checkout API
+    description: >
+      REST API for building high-converting checkout experiences, enabling
+      merchants to accept and manage payments from customers worldwide.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://checkoutdocs.payoneer.com/docs/api-reference
+    baseURL: https://api.payoneer.com
+    tags:
+      - checkout
+      - ecommerce
+      - payments
+      - merchant
+    properties:
+      - type: Documentation
+        url: https://checkoutdocs.payoneer.com/docs/api-reference
+  - name: Payoneer PSD2 API
+    description: >
+      PSD2-compliant banking APIs for European financial services integration,
+      available via the Payoneer PSD2 developer portal with sandbox and live
+      environments.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://developer.payoneer.com/psd2/
+    baseURL: https://api.payoneer.com
+    tags:
+      - PSD2
+      - open banking
+      - Europe
+      - financial services
+    properties:
+      - type: Documentation
+        url: https://developer.payoneer.com/psd2/
+      - type: APIReference
+        url: https://developer.payoneer.com/psd2/apis
+common:
+  - type: Website
+    url: https://www.payoneer.com
+  - type: Documentation
+    url: https://www.payoneer.com/developers/
+  - type: DeveloperPortal
+    url: https://developer.payoneer.com
+  - type: PostmanWorkspace
+    url: https://www.postman.com/payoneerdocs
+  - type: GitHubOrganization
+    url: https://github.com/payoneer
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/payoneer
+  - type: X
+    url: https://x.com/Payoneer_Help
+  - type: Blog
+    url: https://www.payoneer.com/newsroom/
+  - type: StatusPage
+    url: https://status.payoneer.com/
+  - type: Plans
+    url: plans/payoneer-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/payoneer-rate-limits.yml
+  - type: FinOps
+    url: finops/payoneer-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
