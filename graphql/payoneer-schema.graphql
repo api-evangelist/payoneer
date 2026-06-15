@@ -1,0 +1,882 @@
+"""
+Payoneer GraphQL Schema
+Conceptual schema derived from the Payoneer REST API covering payee management,
+payments, balance accounts, currency exchange, and tax compliance for marketplaces
+and freelancer platforms.
+"""
+
+# ─── Scalars ────────────────────────────────────────────────────────────────
+
+scalar DateTime
+scalar Date
+scalar Decimal
+scalar JSON
+
+# ─── Enums ──────────────────────────────────────────────────────────────────
+
+enum PayeeStatus {
+  PENDING
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  BLOCKED
+  CLOSED
+}
+
+enum PayeeType {
+  INDIVIDUAL
+  COMPANY
+}
+
+enum PaymentStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+  REVERSED
+  ON_HOLD
+}
+
+enum PaymentMethod {
+  PAYONEER_ACCOUNT
+  BANK_TRANSFER
+  PREPAID_CARD
+  WIRE_TRANSFER
+  LOCAL_BANK_TRANSFER
+  PAPER_CHECK
+}
+
+enum CurrencyCode {
+  USD
+  EUR
+  GBP
+  AUD
+  CAD
+  JPY
+  CNY
+  INR
+  BRL
+  MXN
+  SGD
+  HKD
+  CHF
+  SEK
+  NOK
+  DKK
+  ILS
+  ZAR
+  TRY
+  AED
+  SAR
+}
+
+enum AccountType {
+  BALANCE_ACCOUNT
+  BANK_ACCOUNT
+  PREPAID_CARD
+}
+
+enum AccountStatus {
+  ACTIVE
+  INACTIVE
+  SUSPENDED
+  CLOSED
+  PENDING_APPROVAL
+}
+
+enum TransactionType {
+  CREDIT
+  DEBIT
+  FEE
+  REFUND
+  CURRENCY_CONVERSION
+  REVERSAL
+}
+
+enum TransactionStatus {
+  PENDING
+  COMPLETED
+  FAILED
+  REVERSED
+}
+
+enum KycStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  REQUIRES_UPDATE
+}
+
+enum TaxFormType {
+  W9
+  W8_BEN
+  W8_BEN_E
+  W8_IMY
+  W8_EXP
+  W8_ECI
+}
+
+enum TaxStatus {
+  NOT_SUBMITTED
+  SUBMITTED
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+enum WebhookEvent {
+  PAYEE_CREATED
+  PAYEE_UPDATED
+  PAYEE_STATUS_CHANGED
+  PAYMENT_INITIATED
+  PAYMENT_COMPLETED
+  PAYMENT_FAILED
+  PAYMENT_CANCELLED
+  BALANCE_UPDATED
+  KYC_STATUS_CHANGED
+  TAX_FORM_SUBMITTED
+  CURRENCY_EXCHANGE_COMPLETED
+}
+
+enum WebhookStatus {
+  ACTIVE
+  INACTIVE
+  FAILED
+}
+
+enum ExchangeRateType {
+  SPOT
+  FORWARD
+  GUARANTEED
+}
+
+enum SortOrder {
+  ASC
+  DESC
+}
+
+enum ProgramType {
+  MARKETPLACE
+  FREELANCER_PLATFORM
+  AFFILIATE_NETWORK
+  DIRECT_BILLING
+}
+
+enum DocumentType {
+  PASSPORT
+  NATIONAL_ID
+  DRIVERS_LICENSE
+  UTILITY_BILL
+  BANK_STATEMENT
+  BUSINESS_REGISTRATION
+  CERTIFICATE_OF_INCORPORATION
+  TAX_ID_DOCUMENT
+}
+
+enum DocumentStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  EXPIRED
+}
+
+enum CountryCode {
+  US
+  GB
+  DE
+  FR
+  AU
+  CA
+  IN
+  CN
+  BR
+  MX
+  SG
+  IL
+  ZA
+  TR
+  AE
+  SA
+  JP
+  KR
+  TH
+  PH
+  NG
+  KE
+  EG
+  PK
+  BD
+  VN
+  ID
+  AR
+  CO
+  CL
+  PE
+}
+
+# ─── Core Types ─────────────────────────────────────────────────────────────
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+  totalCount: Int!
+}
+
+type Money {
+  amount: Decimal!
+  currency: CurrencyCode!
+}
+
+type Address {
+  street1: String!
+  street2: String
+  city: String!
+  state: String
+  postalCode: String
+  country: CountryCode!
+}
+
+type ContactInfo {
+  email: String!
+  phone: String
+  alternateEmail: String
+}
+
+# ─── Payee Types ─────────────────────────────────────────────────────────────
+
+type PayeeIndividualDetails {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: Date
+  nationality: CountryCode
+  taxIdentificationNumber: String
+}
+
+type PayeeCompanyDetails {
+  legalName: String!
+  tradeName: String
+  registrationNumber: String
+  taxIdentificationNumber: String
+  incorporationDate: Date
+  incorporationCountry: CountryCode
+}
+
+type PayeeBankAccount {
+  id: ID!
+  accountHolderName: String!
+  bankName: String!
+  accountNumber: String
+  routingNumber: String
+  iban: String
+  swiftCode: String
+  currency: CurrencyCode!
+  country: CountryCode!
+  isPrimary: Boolean!
+  status: AccountStatus!
+  createdAt: DateTime!
+}
+
+type KycInfo {
+  status: KycStatus!
+  submittedAt: DateTime
+  approvedAt: DateTime
+  rejectedAt: DateTime
+  rejectionReason: String
+  documents: [KycDocument!]!
+}
+
+type KycDocument {
+  id: ID!
+  type: DocumentType!
+  status: DocumentStatus!
+  uploadedAt: DateTime!
+  reviewedAt: DateTime
+  expirationDate: Date
+  rejectionReason: String
+}
+
+type TaxInfo {
+  status: TaxStatus!
+  formType: TaxFormType
+  submittedAt: DateTime
+  approvedAt: DateTime
+  expirationDate: Date
+  withholdingRate: Decimal
+}
+
+type Payee {
+  id: ID!
+  externalId: String
+  programId: String!
+  type: PayeeType!
+  status: PayeeStatus!
+  contactInfo: ContactInfo!
+  address: Address!
+  individualDetails: PayeeIndividualDetails
+  companyDetails: PayeeCompanyDetails
+  bankAccounts: [PayeeBankAccount!]!
+  balanceAccounts: [BalanceAccount!]!
+  kycInfo: KycInfo!
+  taxInfo: TaxInfo!
+  payments(first: Int, after: String, last: Int, before: String): PaymentConnection!
+  totalPaid: Money
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PayeeConnection {
+  edges: [PayeeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PayeeEdge {
+  node: Payee!
+  cursor: String!
+}
+
+# ─── Balance Account Types ───────────────────────────────────────────────────
+
+type BalanceAccount {
+  id: ID!
+  payeeId: ID!
+  currency: CurrencyCode!
+  status: AccountStatus!
+  availableBalance: Money!
+  pendingBalance: Money!
+  totalBalance: Money!
+  transactions(first: Int, after: String): TransactionConnection!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type BalanceAccountConnection {
+  edges: [BalanceAccountEdge!]!
+  pageInfo: PageInfo!
+}
+
+type BalanceAccountEdge {
+  node: BalanceAccount!
+  cursor: String!
+}
+
+# ─── Transaction Types ───────────────────────────────────────────────────────
+
+type Transaction {
+  id: ID!
+  accountId: ID!
+  type: TransactionType!
+  status: TransactionStatus!
+  amount: Money!
+  fee: Money
+  netAmount: Money!
+  description: String
+  referenceId: String
+  paymentId: ID
+  createdAt: DateTime!
+  completedAt: DateTime
+}
+
+type TransactionConnection {
+  edges: [TransactionEdge!]!
+  pageInfo: PageInfo!
+}
+
+type TransactionEdge {
+  node: Transaction!
+  cursor: String!
+}
+
+# ─── Payment Types ───────────────────────────────────────────────────────────
+
+type PaymentFee {
+  amount: Money!
+  feeType: String!
+  description: String
+}
+
+type Payment {
+  id: ID!
+  programId: String!
+  payeeId: ID!
+  payee: Payee!
+  method: PaymentMethod!
+  status: PaymentStatus!
+  amount: Money!
+  fees: [PaymentFee!]!
+  netAmount: Money!
+  description: String
+  clientReferenceId: String
+  processingDate: Date
+  completedAt: DateTime
+  failureReason: String
+  metadata: JSON
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type PaymentConnection {
+  edges: [PaymentEdge!]!
+  pageInfo: PageInfo!
+}
+
+type PaymentEdge {
+  node: Payment!
+  cursor: String!
+}
+
+type BatchPayment {
+  id: ID!
+  programId: String!
+  status: PaymentStatus!
+  totalAmount: Money!
+  totalFees: Money!
+  paymentCount: Int!
+  successCount: Int
+  failureCount: Int
+  payments: [Payment!]!
+  createdAt: DateTime!
+  completedAt: DateTime
+}
+
+type BatchPaymentConnection {
+  edges: [BatchPaymentEdge!]!
+  pageInfo: PageInfo!
+}
+
+type BatchPaymentEdge {
+  node: BatchPayment!
+  cursor: String!
+}
+
+# ─── Currency Exchange Types ─────────────────────────────────────────────────
+
+type ExchangeRate {
+  fromCurrency: CurrencyCode!
+  toCurrency: CurrencyCode!
+  rate: Decimal!
+  rateType: ExchangeRateType!
+  validFrom: DateTime!
+  validUntil: DateTime
+}
+
+type CurrencyExchange {
+  id: ID!
+  accountId: ID!
+  fromCurrency: CurrencyCode!
+  toCurrency: CurrencyCode!
+  fromAmount: Money!
+  toAmount: Money!
+  rate: Decimal!
+  fee: Money
+  status: TransactionStatus!
+  createdAt: DateTime!
+  completedAt: DateTime
+}
+
+type CurrencyExchangeConnection {
+  edges: [CurrencyExchangeEdge!]!
+  pageInfo: PageInfo!
+}
+
+type CurrencyExchangeEdge {
+  node: CurrencyExchange!
+  cursor: String!
+}
+
+# ─── Program Types ───────────────────────────────────────────────────────────
+
+type Program {
+  id: ID!
+  name: String!
+  type: ProgramType!
+  status: AccountStatus!
+  defaultCurrency: CurrencyCode!
+  supportedCurrencies: [CurrencyCode!]!
+  payees(first: Int, after: String, status: PayeeStatus): PayeeConnection!
+  payments(first: Int, after: String, status: PaymentStatus): PaymentConnection!
+  totalPaid: Money
+  payeeCount: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+# ─── Webhook Types ───────────────────────────────────────────────────────────
+
+type Webhook {
+  id: ID!
+  url: String!
+  events: [WebhookEvent!]!
+  status: WebhookStatus!
+  secret: String
+  failureCount: Int!
+  lastDeliveredAt: DateTime
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type WebhookDelivery {
+  id: ID!
+  webhookId: ID!
+  event: WebhookEvent!
+  payload: JSON!
+  responseCode: Int
+  responseBody: String
+  success: Boolean!
+  deliveredAt: DateTime!
+  nextRetryAt: DateTime
+}
+
+type WebhookConnection {
+  edges: [WebhookEdge!]!
+  pageInfo: PageInfo!
+}
+
+type WebhookEdge {
+  node: Webhook!
+  cursor: String!
+}
+
+# ─── Reporting Types ─────────────────────────────────────────────────────────
+
+type PaymentReport {
+  programId: String!
+  period: DateRange!
+  totalPayments: Int!
+  totalAmount: Money!
+  totalFees: Money!
+  successfulPayments: Int!
+  failedPayments: Int!
+  byMethod: [PaymentMethodSummary!]!
+  byCurrency: [CurrencySummary!]!
+}
+
+type DateRange {
+  startDate: Date!
+  endDate: Date!
+}
+
+type PaymentMethodSummary {
+  method: PaymentMethod!
+  count: Int!
+  totalAmount: Money!
+}
+
+type CurrencySummary {
+  currency: CurrencyCode!
+  count: Int!
+  totalAmount: Money!
+}
+
+type PayeeReport {
+  programId: String!
+  period: DateRange!
+  newPayees: Int!
+  activePayees: Int!
+  inactivePayees: Int!
+  kycApproved: Int!
+  kycPending: Int!
+  byCountry: [CountrySummary!]!
+}
+
+type CountrySummary {
+  country: CountryCode!
+  payeeCount: Int!
+  totalPaid: Money
+}
+
+# ─── Auth Types ─────────────────────────────────────────────────────────────
+
+type AuthToken {
+  accessToken: String!
+  tokenType: String!
+  expiresIn: Int!
+  scope: String
+}
+
+# ─── Input Types ─────────────────────────────────────────────────────────────
+
+input AddressInput {
+  street1: String!
+  street2: String
+  city: String!
+  state: String
+  postalCode: String
+  country: CountryCode!
+}
+
+input ContactInfoInput {
+  email: String!
+  phone: String
+  alternateEmail: String
+}
+
+input PayeeIndividualInput {
+  firstName: String!
+  lastName: String!
+  dateOfBirth: Date
+  nationality: CountryCode
+  taxIdentificationNumber: String
+}
+
+input PayeeCompanyInput {
+  legalName: String!
+  tradeName: String
+  registrationNumber: String
+  taxIdentificationNumber: String
+  incorporationDate: Date
+  incorporationCountry: CountryCode
+}
+
+input CreatePayeeInput {
+  externalId: String
+  programId: String!
+  type: PayeeType!
+  contactInfo: ContactInfoInput!
+  address: AddressInput!
+  individualDetails: PayeeIndividualInput
+  companyDetails: PayeeCompanyInput
+}
+
+input UpdatePayeeInput {
+  contactInfo: ContactInfoInput
+  address: AddressInput
+  individualDetails: PayeeIndividualInput
+  companyDetails: PayeeCompanyInput
+}
+
+input AddBankAccountInput {
+  payeeId: ID!
+  accountHolderName: String!
+  bankName: String!
+  accountNumber: String
+  routingNumber: String
+  iban: String
+  swiftCode: String
+  currency: CurrencyCode!
+  country: CountryCode!
+  isPrimary: Boolean
+}
+
+input CreatePaymentInput {
+  programId: String!
+  payeeId: ID!
+  method: PaymentMethod!
+  amount: Decimal!
+  currency: CurrencyCode!
+  description: String
+  clientReferenceId: String
+  processingDate: Date
+  metadata: JSON
+}
+
+input BatchPaymentItemInput {
+  payeeId: ID!
+  method: PaymentMethod!
+  amount: Decimal!
+  currency: CurrencyCode!
+  description: String
+  clientReferenceId: String
+}
+
+input CreateBatchPaymentInput {
+  programId: String!
+  payments: [BatchPaymentItemInput!]!
+  description: String
+}
+
+input CurrencyExchangeInput {
+  accountId: ID!
+  fromCurrency: CurrencyCode!
+  toCurrency: CurrencyCode!
+  fromAmount: Decimal!
+}
+
+input CreateWebhookInput {
+  url: String!
+  events: [WebhookEvent!]!
+}
+
+input UpdateWebhookInput {
+  url: String
+  events: [WebhookEvent!]
+  status: WebhookStatus
+}
+
+input PayeeFilterInput {
+  status: PayeeStatus
+  type: PayeeType
+  country: CountryCode
+  kycStatus: KycStatus
+  createdAfter: DateTime
+  createdBefore: DateTime
+  search: String
+}
+
+input PaymentFilterInput {
+  status: PaymentStatus
+  method: PaymentMethod
+  currency: CurrencyCode
+  payeeId: ID
+  createdAfter: DateTime
+  createdBefore: DateTime
+  minAmount: Decimal
+  maxAmount: Decimal
+}
+
+input TransactionFilterInput {
+  type: TransactionType
+  status: TransactionStatus
+  currency: CurrencyCode
+  createdAfter: DateTime
+  createdBefore: DateTime
+}
+
+input DateRangeInput {
+  startDate: Date!
+  endDate: Date!
+}
+
+input PayeeSortInput {
+  field: PayeeSortField!
+  order: SortOrder!
+}
+
+enum PayeeSortField {
+  CREATED_AT
+  UPDATED_AT
+  STATUS
+  COUNTRY
+}
+
+input PaymentSortInput {
+  field: PaymentSortField!
+  order: SortOrder!
+}
+
+enum PaymentSortField {
+  CREATED_AT
+  COMPLETED_AT
+  AMOUNT
+  STATUS
+}
+
+# ─── Query ───────────────────────────────────────────────────────────────────
+
+type Query {
+  # Payee queries
+  payee(id: ID!): Payee
+  payeeByExternalId(programId: String!, externalId: String!): Payee
+  payees(
+    programId: String!
+    first: Int
+    after: String
+    last: Int
+    before: String
+    filter: PayeeFilterInput
+    sort: PayeeSortInput
+  ): PayeeConnection!
+
+  # Balance account queries
+  balanceAccount(id: ID!): BalanceAccount
+  balanceAccounts(payeeId: ID!): [BalanceAccount!]!
+
+  # Payment queries
+  payment(id: ID!): Payment
+  payments(
+    programId: String!
+    first: Int
+    after: String
+    last: Int
+    before: String
+    filter: PaymentFilterInput
+    sort: PaymentSortInput
+  ): PaymentConnection!
+
+  # Batch payment queries
+  batchPayment(id: ID!): BatchPayment
+  batchPayments(
+    programId: String!
+    first: Int
+    after: String
+  ): BatchPaymentConnection!
+
+  # Transaction queries
+  transactions(
+    accountId: ID!
+    first: Int
+    after: String
+    filter: TransactionFilterInput
+  ): TransactionConnection!
+
+  # Currency exchange queries
+  exchangeRate(fromCurrency: CurrencyCode!, toCurrency: CurrencyCode!): ExchangeRate
+  exchangeRates(baseCurrency: CurrencyCode!): [ExchangeRate!]!
+  currencyExchanges(accountId: ID!, first: Int, after: String): CurrencyExchangeConnection!
+
+  # Program queries
+  program(id: ID!): Program
+  programs: [Program!]!
+
+  # Webhook queries
+  webhook(id: ID!): Webhook
+  webhooks(first: Int, after: String): WebhookConnection!
+  webhookDeliveries(webhookId: ID!, first: Int, after: String): [WebhookDelivery!]!
+
+  # Reporting queries
+  paymentReport(programId: String!, period: DateRangeInput!): PaymentReport!
+  payeeReport(programId: String!, period: DateRangeInput!): PayeeReport!
+}
+
+# ─── Mutation ────────────────────────────────────────────────────────────────
+
+type Mutation {
+  # Payee mutations
+  createPayee(input: CreatePayeeInput!): Payee!
+  updatePayee(id: ID!, input: UpdatePayeeInput!): Payee!
+  suspendPayee(id: ID!, reason: String): Payee!
+  reactivatePayee(id: ID!): Payee!
+
+  # Bank account mutations
+  addBankAccount(input: AddBankAccountInput!): PayeeBankAccount!
+  setPrimaryBankAccount(payeeId: ID!, bankAccountId: ID!): PayeeBankAccount!
+  removeBankAccount(payeeId: ID!, bankAccountId: ID!): Boolean!
+
+  # KYC mutations
+  initiateKyc(payeeId: ID!): KycInfo!
+  uploadKycDocument(payeeId: ID!, type: DocumentType!, fileContent: String!, fileName: String!): KycDocument!
+
+  # Tax mutations
+  submitTaxForm(payeeId: ID!, formType: TaxFormType!, formData: JSON!): TaxInfo!
+
+  # Payment mutations
+  createPayment(input: CreatePaymentInput!): Payment!
+  cancelPayment(id: ID!, reason: String): Payment!
+  createBatchPayment(input: CreateBatchPaymentInput!): BatchPayment!
+  cancelBatchPayment(id: ID!, reason: String): BatchPayment!
+
+  # Currency exchange mutations
+  createCurrencyExchange(input: CurrencyExchangeInput!): CurrencyExchange!
+
+  # Webhook mutations
+  createWebhook(input: CreateWebhookInput!): Webhook!
+  updateWebhook(id: ID!, input: UpdateWebhookInput!): Webhook!
+  deleteWebhook(id: ID!): Boolean!
+  retryWebhookDelivery(deliveryId: ID!): WebhookDelivery!
+
+  # Auth mutations
+  createAuthToken(clientId: String!, clientSecret: String!, scope: String): AuthToken!
+}
+
+# ─── Subscription ────────────────────────────────────────────────────────────
+
+type Subscription {
+  payeeStatusChanged(programId: String!): Payee!
+  paymentStatusChanged(programId: String!): Payment!
+  balanceUpdated(payeeId: ID!): BalanceAccount!
+  kycStatusChanged(payeeId: ID!): KycInfo!
+}
