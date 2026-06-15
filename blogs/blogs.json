@@ -6,5 +6,17 @@
   "rssConfirmed": false,
   "notes": "No public RSS feed found for the Payoneer newsroom. The newsroom at https://www.payoneer.com/newsroom/ does not expose a feed endpoint at common paths (/feed/, /rss/, /atom/).",
   "lastChecked": "2026-06-12",
-  "posts": []
+  "posts": [],
+  "repo": "payoneer",
+  "feeds": [
+    {
+      "source": "https://x.com/Payoneer_Help",
+      "feed_url": "https://x.com/Payoneer_Help",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
