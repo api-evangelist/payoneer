@@ -101,6 +101,8 @@ apis:
   - type: APIReference
     url: https://developer.payoneer.com/psd2/apis
 common:
+- type: DomainSecurity
+  url: security/payoneer-domain-security.yml
 - type: Website
   url: https://www.payoneer.com
 - type: Documentation
