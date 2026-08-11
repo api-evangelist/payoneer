@@ -113,6 +113,12 @@ apis:
   - type: APIReference
     url: https://developer.payoneer.com/psd2/apis
 common:
+- type: Community
+  url: https://www.payoneer.com/community/
+- type: PrivacyPolicy
+  url: https://www.payoneer.com/legal/privacy-policy/
+- type: Pricing
+  url: https://www.payoneer.com/about/pricing/
 - type: DomainSecurity
   url: security/payoneer-domain-security.yml
 - type: Website
