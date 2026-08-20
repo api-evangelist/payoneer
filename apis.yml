@@ -41,6 +41,17 @@ description: 'Payoneer is a global payment platform that enables businesses to p
 
   '
 tags:
+- Payments
+- Payouts
+- Cross-Border Payments
+- Currency Conversion
+- Marketplace Payments
+- Fintech
+- Financial-Services
+- Mass Payouts
+- Checkout
+- REST
+tags_raw:
 - payments
 - payouts
 - cross-border payments
@@ -61,6 +72,10 @@ apis:
   humanURL: https://www.payoneer.com/developers/
   baseURL: https://api.payoneer.com
   tags:
+  - Payouts
+  - Mass Payments
+  - payee management
+  tags_raw:
   - payouts
   - mass payments
   - payee management
@@ -80,6 +95,11 @@ apis:
   humanURL: https://www.payoneer.com/developers/
   baseURL: https://api.payoneer.com
   tags:
+  - Payouts
+  - Payment Services
+  - Currency
+  - Tax Compliance
+  tags_raw:
   - payouts
   - payment services
   - currency
@@ -98,6 +118,11 @@ apis:
   humanURL: https://checkoutdocs.payoneer.com/docs/api-reference
   baseURL: https://api.payoneer.com
   tags:
+  - Checkout
+  - E-Commerce
+  - Payments
+  - Merchant
+  tags_raw:
   - checkout
   - ecommerce
   - payments
@@ -114,6 +139,11 @@ apis:
   humanURL: https://developer.payoneer.com/psd2/
   baseURL: https://api.payoneer.com
   tags:
+  - PSD2
+  - Open Banking
+  - Europe
+  - Financial-Services
+  tags_raw:
   - PSD2
   - open banking
   - Europe
