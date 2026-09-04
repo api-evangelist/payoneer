@@ -1,26 +1,29 @@
-# Kin Score artifact — payoneer — 2026-08-03T113057
+# Kin Score artifact — payoneer — 2026-09-01T222808
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: payoneer
-  schema_version: 0.9
-  scored_at: '2026-08-03'
-  run_ts: 2026-08-03T113057
-  composite: 33.8
+  schema_version: 0.18.0
+  scored_at: '2026-09-01'
+  run_ts: 2026-09-01T222808
+  composite: 37.1
   band: thin
   facets:
-    discoverability: 74.1
-    contract_quality: 53.1
+    discoverability: 81.5
+    contract_quality: 45.7
     governance: 0.0
-    operational_transparency: 42.1
-    developer_ergonomics: 23.9
-    commercial_clarity: 28.9
+    operational_transparency: 39.5
+    developer_ergonomics: 19.0
+    commercial_clarity: 50.0
+    contract_governance: 0.0
+    access_clarity: 50.0
   agent_readiness:
-    score: 19.4
+    score: 15.5
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: false
+      reversibility_documented: false
       mcp_server: false
       auth_clarity: false
       idempotency: false
@@ -33,9 +36,13 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Payments
     regime_id: payments
-    score: 17.2
+    score: 23.4
     matched_via: tags
