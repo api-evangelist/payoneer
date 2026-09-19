@@ -121,7 +121,7 @@ apis:
   - Checkout
   - E-Commerce
   - Payments
-  - Merchant
+  - Merchants
   tags_raw:
   - checkout
   - ecommerce
