@@ -47,7 +47,7 @@ tags:
 - Currency Conversion
 - Marketplace Payments
 - Fintech
-- Financial-Services
+- Financial Services
 - Mass Payouts
 - Checkout
 - REST
@@ -62,6 +62,7 @@ tags_raw:
 - mass payouts
 - checkout
 - REST
+- Financial-Services
 apis:
 - name: Payoneer Mass Payout API
   description: 'Enables payee registration, account approval, and fund transfers for
@@ -84,8 +85,6 @@ apis:
     url: https://developer.payoneer.com/docs/mass-payouts-v4-getting-started.html
   - type: PostmanCollection
     url: https://www.postman.com/payoneerdocs/payoneer-mass-payout-api/documentation/hr4ub7m/payoneer-mass-payout-api
-  - url: graphql/payoneer-graphql.md
-    type: GraphQL
 - name: Payoneer Mass Payout & Services API
   description: 'Extended mass payout API including additional payment services such
     as multicurrency accounts, billing, invoice services, and tax compliance integrations.
@@ -142,12 +141,13 @@ apis:
   - PSD2
   - Open Banking
   - Europe
-  - Financial-Services
+  - Financial Services
   tags_raw:
   - PSD2
   - open banking
   - Europe
   - financial services
+  - Financial-Services
   properties:
   - type: Documentation
     url: https://developer.payoneer.com/psd2/
