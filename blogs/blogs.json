@@ -10,6 +10,13 @@
   "repo": "payoneer",
   "feeds": [
     {
+      "source": "https://www.payoneer.com/newsroom/",
+      "feed_url": "https://www.payoneer.com/newsroom/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    },
+    {
       "source": "https://x.com/Payoneer_Help",
       "feed_url": "https://x.com/Payoneer_Help",
       "title": "",
@@ -18,6 +25,6 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-10-03T12:30:02Z",
+  "fetched": "2026-10-10T13:15:00Z",
   "agent_pulled": "2026-07-04"
 }
