@@ -49,3 +49,30 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: payoneer-mas-financial-institutions-directory
+  label: MAS Financial Institutions Directory
+  partner_name: MAS Financial Institutions Directory
+  category: open finance (Singapore)
+  type: register
+  channel: regulator-register
+  evidence: https://eservices.mas.gov.sg/fid
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: PAYONEER SINGAPORE PRIVATE LIMITED
+      licences:
+      - Major Payment Institution
+      matched_domain: payoneer.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/412296-PAYONEER-SINGAPORE-PRIVATE-LIMITED
+      register_id: 412296-PAYONEER-SINGAPORE-PRIVATE-LIMITED
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null

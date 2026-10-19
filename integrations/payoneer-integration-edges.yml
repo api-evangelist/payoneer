@@ -1,9 +1,13 @@
 generated: '2026-10-15'
 method: searched
 checked:
+- https://eservices.mas.gov.sg/fid
 - https://kantarainitiative.org/trust-status-list/
 - https://msb.fincen.gov/
 - https://www.access-dvs-register.service.gov.uk/register/download-register
+- https://www.bi.go.id/id/layanan/informasi-perizinan/sistem-pembayaran/default.aspx
+- https://www.bnm.gov.my/list-of-regulatees
+- https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
 - woocommerce/integrations/woocommerce-integration-edges.yml
 source:
 - woocommerce/integrations/woocommerce-integration-edges.yml
@@ -58,3 +62,30 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-regtech-aml.py
   first_seen: '2026-10-15'
+- partner_name: MAS Financial Institutions Directory
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://eservices.mas.gov.sg/fid
+  category: open finance (Singapore)
+  contract_reference:
+    register: MAS Financial Institutions Directory
+    spec_file: null
+    standard: MAS licensing (Banking Act / Payment Services Act, Singapore)
+    role: licensed-participant
+    registrations:
+    - registered_name: PAYONEER SINGAPORE PRIVATE LIMITED
+      licences:
+      - Major Payment Institution
+      matched_domain: payoneer.com
+      matched_by: domain
+      evidence: https://eservices.mas.gov.sg/fid/institution/detail/412296-PAYONEER-SINGAPORE-PRIVATE-LIMITED
+      register_id: 412296-PAYONEER-SINGAPORE-PRIVATE-LIMITED
+    signal_note: 'participation only: a regulator licence; no API conformance is published by this register'
+    detected_by: sweep-gulf-asean-open-finance.py
+    detected: '2026-10-18'
+  detected_by: sweep-gulf-asean-open-finance.py
+  first_seen: '2026-10-18'
