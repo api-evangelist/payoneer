@@ -1,5 +1,11 @@
-generated: '2026-10-15'
+generated: '2026-10-20'
 method: searched
+source:
+- woocommerce/integrations/woocommerce-integration-edges.yml
+- https://zapier.com/apps/payoneer/integrations
+- https://n8n.io/integrations/payoneer/
+- https://composio.dev/toolkits/payoneer
+- https://monid.ai/tools/payoneer
 checked:
 - https://eservices.mas.gov.sg/fid
 - https://kantarainitiative.org/trust-status-list/
@@ -9,8 +15,12 @@ checked:
 - https://www.bnm.gov.my/list-of-regulatees
 - https://www.ojk.go.id/id/kanal/iknb/data-dan-statistik/direktori/fintech/Default.aspx
 - woocommerce/integrations/woocommerce-integration-edges.yml
-source:
-- woocommerce/integrations/woocommerce-integration-edges.yml
+- https://composio.dev/toolkits/payoneer
+- https://monid.ai/tools/payoneer
+- https://n8n.io/integrations/payoneer/
+- https://zapier.com/apps/payoneer/integrations
+summary: null
+marketplace_apps: []
 edges:
 - partner_name: WooCommerce (own)
   partner: woocommerce
@@ -89,3 +99,4 @@ edges:
     detected: '2026-10-18'
   detected_by: sweep-gulf-asean-open-finance.py
   first_seen: '2026-10-18'
+templates: []
