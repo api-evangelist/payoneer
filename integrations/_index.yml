@@ -76,3 +76,15 @@
     detected: '2026-10-18'
   status: not-a-workflow
   arazzo: null
+- slug: payoneer-amazon-selling-partner-appstore
+  label: Amazon Selling Partner Appstore
+  partner: amazon-seller-central
+  partner_name: Amazon Selling Partner Appstore
+  type: marketplace
+  marketplace: own
+  channel: partner-built
+  evidence: https://sellercentral.amazon.com/selling-partner-appstore/dp/amzn1.sellerapps.app.b6e1612e-28f0-4264-8e2c-398285370c71
+  source: edge
+  relationship: platform-app
+  status: not-a-workflow
+  arazzo: null
