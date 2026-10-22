@@ -25,6 +25,11 @@ checked:
 - https://euclid.eba.europa.eu/register/api/filemetadata
 - https://euclid.eba.europa.eu/register/cir/search
 - https://euclid.eba.europa.eu/register/pir/search
+- https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+- https://www.bankofcanada.ca/rps-api/cif2/accounts/list
+- https://www.payments.ca/payment-resources/directories?field_directory_type=10
+- https://www.payments.ca/payment-resources/directories?field_directory_type=13
+- https://www.payments.ca/payment-resources/directories?field_directory_type=14
 summary: null
 marketplace_apps: []
 edges:
@@ -193,4 +198,45 @@ edges:
       P856 not contradicting (Kin 2026-10-20 decision 2)
   detected_by: sweep-eu-psd2-payment-institutions.py
   first_seen: '2026-10-21'
+- partner_name: Bank of Canada RPAA registry of payment service providers
+  partner: null
+  partner_match: register
+  type: register
+  channel: regulator-register
+  relationship: standard-participant
+  direction: partner-built
+  evidence: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/
+  category: Canadian retail payment activities (RPAA) PSP registration
+  contract_reference:
+    register: Bank of Canada RPAA registry of payment service providers
+    spec_file: null
+    standard: null
+    role: registered-psp
+    registrations:
+    - registered_name: Payoneer Canada Limited
+      register_status: registered
+      register_country: CA
+      register_id: a0060a8f-5c98-ef11-8a69-6045bd5e516b
+      matched_domain: payoneer.com
+      matched_by: domain
+      evidence_url: https://www.bankofcanada.ca/core-functions/retail-payments-supervision/psp-registry/psp-registry-details/?account_id=a0060a8f-5c98-ef11-8a69-6045bd5e516b
+      licences:
+      - RPAA registered PSP
+      registration_date: '2026-09-29'
+      head_office_country: Canada
+      payment_functions:
+      - The provision or maintenance of an account that, in relation to an electronic funds transfer, is held on
+        behalf of one or more end users
+      - Holding of funds on behalf of an end user until they are withdrawn by the end user or transferred to another
+        individual or entity
+      - The initiation of an electronic funds transfer at the request of an end user
+      - Authorization or Transmission, Reception or Facilitation of an instruction in relation to an electronic
+        funds transfer
+      has_violations: false
+    signal_note: 'participation only: a regulator registration / payment-system membership; no API conformance is
+      published by this register'
+    detected_by: sweep-canada-rpaa-psp-registry.py
+    detected: '2026-10-22'
+  detected_by: sweep-canada-rpaa-psp-registry.py
+  first_seen: '2026-10-22'
 templates: []
