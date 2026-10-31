@@ -1,4 +1,4 @@
-# Payoneer (payoneer)
+# Payoneer
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,63 +64,122 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Payoneer is a global payment platform that enables businesses to pay and get paid across borders in multiple currencies. It offers REST APIs for mass payouts, marketplace payment distribution, payment requests, and currency conversion. Authentication uses OAuth2 bearer tokens via the client credentials flow, with credentials issued after an integration partnership is approved. Payoneer also provides a PSD2-compliant developer portal for European banking integrations and maintains a Postman workspace with published API collections.
+Payoneer is a global payment platform that enables businesses to pay and get paid across borders in multiple currencies. It offers REST APIs for mass payouts, marketplace payment distribution, payment requests, and currency conversion. The Mass Payout API supports payee registration, account approval, and fund transfers at scale, while the Checkout API provides ecommerce platforms with tools to accept and manage global payments. Authentication is handled via OAuth2 bearer tokens using the client credentials flow, with credentials issued after an integration partnership is approved. Payoneer also provides a PSD2-compliant developer portal for European banking integrations, and maintains a Postman workspace with published API collections.
 
-APIs.json: https://raw.githubusercontent.com/api-evangelist/payoneer/refs/heads/main/apis.yml
+**Areas:** Payments · Payouts · Cross-Border Payments · Currency Conversion · Marketplace Payments · Fintech · Financial Services · Mass Payouts · Checkout · REST
 
-Naftiko: https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=payoneer-api-evangelist&utm_content=repo
+## Payoneer on APIs.io
 
-## Tags
+Everything profiled for Payoneer is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/payoneer/](https://apis.io/providers/payoneer/)** — or go straight to one of the APIs or properties below.
 
-- payments
-- payouts
-- cross-border payments
-- currency conversion
-- marketplace payments
-- fintech
-- financial services
-- mass payouts
-- checkout
-- REST
+### APIs (4)
 
-## APIs
+- [Payoneer Mass Payout API](https://apis.io/apis/payoneer/payoneer-mass-payout-api/) — Enables payee registration, account approval, and fund transfers for mass payouts to recipients around the world.
+- [Payoneer Mass Payout & Services API](https://apis.io/apis/payoneer/payoneer-mass-payout-services-api/) — Extended mass payout API including additional payment services such as multicurrency accounts, billing, invoice services, and tax compliance integrations.
+- [Payoneer Checkout API](https://apis.io/apis/payoneer/payoneer-checkout-api/) — REST API for building high-converting checkout experiences, enabling merchants to accept and manage payments from customers worldwide.
+- [Payoneer PSD2 API](https://apis.io/apis/payoneer/payoneer-psd2-api/) — PSD2-compliant banking APIs for European financial services integration, available via the Payoneer PSD2 developer portal with sandbox and live environments.
 
-| Name | Description |
-|------|-------------|
-| Payoneer Mass Payout API | Payee registration, account approval, and fund transfers for mass payouts worldwide |
-| Payoneer Mass Payout & Services API | Extended mass payout API with multicurrency accounts, billing, and tax compliance |
-| Payoneer Checkout API | REST API for building checkout experiences to accept global payments |
-| Payoneer PSD2 API | PSD2-compliant banking APIs for European financial services integration |
+### Published properties
 
-## Plans / Rate Limits / FinOps
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-| Resource | File |
-|----------|------|
-| Plans & Pricing | [plans/payoneer-plans-pricing.yml](plans/payoneer-plans-pricing.yml) |
-| Rate Limits | [rate-limits/payoneer-rate-limits.yml](rate-limits/payoneer-rate-limits.yml) |
-| FinOps | [finops/payoneer-finops.yml](finops/payoneer-finops.yml) |
+#### GraphQL (1)
 
-API access is provided to approved integration partners. Pricing is transaction-based (per payout, per collection, per conversion) with enterprise volume discounts available. Specific numeric rate limits are not publicly documented; OAuth2 tokens are valid for 30 days.
+GraphQL schemas.
 
-## Timestamps
+- [Moved to /providers/payoneer/](https://apis.io/graphqls/payoneer/payoneer-graphql/)
 
-- **Created:** 2026-06-12
-- **Modified:** 2026-06-12
+#### JSON-LD (1)
 
-## Common Properties
+Linked-data contexts for the provider's vocabulary.
 
-| Type | URL |
-|------|-----|
-| Website | https://www.payoneer.com |
-| Documentation | https://www.payoneer.com/developers/ |
-| Developer Portal | https://developer.payoneer.com |
-| Postman Workspace | https://www.postman.com/payoneerdocs |
-| GitHub Organization | https://github.com/payoneer |
-| LinkedIn | https://www.linkedin.com/company/payoneer |
-| X | https://x.com/Payoneer_Help |
-| Blog / Newsroom | https://www.payoneer.com/newsroom/ |
-| Status Page | https://status.payoneer.com/ |
+- [Payoneer Context](https://apis.io/jsonld/payoneer/payoneer-context/)
 
-## Maintainers
+#### Security (1)
 
-- **Kin Lane** — kin@apievangelist.com
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Payoneer Domain Security](https://apis.io/security/payoneer/payoneer-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Payoneer Plans Pricing](https://apis.io/plans/payoneer/payoneer-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Payoneer Rate Limits](https://apis.io/rate-limits/payoneer/payoneer-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Payoneer Finops](https://apis.io/finops/payoneer/payoneer-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.payoneer.com)
+- [Documentation](https://www.payoneer.com/developers/)
+- [Pricing](https://www.payoneer.com/about/pricing/)
+- [Blog](https://www.payoneer.com/newsroom/)
+- [Privacy policy](https://www.payoneer.com/legal/privacy-policy/)
+- [GitHub](https://github.com/payoneer)
+- [Status](https://status.payoneer.com/)
+
+## API Evangelist rating
+
+**Kin Score 21.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 10.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 19.0 |
+| Access clarity | 26.3 |
+
+**Agent readiness 0.6** — human-only
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | — |
+| Agentic Access | — |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | — |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 13.4** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/payoneer/](https://apis.io/providers/payoneer/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Payoneer: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/payoneer/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
